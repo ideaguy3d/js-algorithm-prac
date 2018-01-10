@@ -1,0 +1,63 @@
+extends layout
+
+include _includes/sharedHTMLfunctions
+
+block content
+    .row.page-header: .col-lg-12
+        h1= pageHeader.title
+    <!-- setting up nested responsive columns for the template -->
+    .row
+        .col-xs-12.col-md-9
+            .row
+                .col-xs-12.col-md-9
+                    .row
+                        .col-xs-12.col-sm-6.col-md-6
+                            p.rating
+                                +outputRating(location.rating)
+                            p= location.address
+                            .panel.panel-info
+                                .panel-heading
+                                    h2.panel-title Good hours to go
+                                .panel-body
+                                    each time in location.openingTimes
+                                        p
+                                            | #{time.days}
+                                            if time.closed
+                                                | closed
+                                            else
+                                                | #{time.opening} - #{time.closing}
+                            .panel.panel-info
+                                .panel-heading
+                                    h2.panel-title Features
+                                .panel-body
+                                    each feature in location.facilities
+                                        span.label.label-default
+                                            span.glyphicon.glyphicon-ok
+                                            | &nbsp; #{feature}
+                                        | &nbsp;
+                        .col-xs-12.col-sm-6.col-md-6
+                            .panel.panel-info
+                                .panel-heading
+                                    h2.panel-title Parkour Location
+                                .panel-body
+                                    img.img-responsive.img-rounded(src='http://maps.googleapis.com/maps/api/staticmap?center=#{location.coords.lat},#{location.coords.lng}&zoom=8&size=400x350&sensor=false&markers=#{location.coords.lat},#{location.coords.lng}&scale=2')
+            .row
+                .col-xs-12
+                    .panel.panel-info.review-panel
+                        .panel-heading
+                            a.btn.btn-default.pull-right(href='/location/review/new') Add Review
+                            h2.panel-title Parkour Practitioner Reviews
+                        .panel-body.review-container
+                            each review in location.reviews
+                                .row
+                                    .review
+                                        .well.well-sm.review-header
+                                            span.rating
+                                                +outputRating(review.rating)
+                                            span.reviewAuthor #{review.author}
+                                            small.reviewTimestamp #{review.timestamp}
+                                        .col-xs-12
+                                            p !{(review.reviewText).replace(/\n/g, '<br/>')}
+        .col-xs-12.col-md-3
+            p.lead #{location.name} #{sidebar.context}
+            p= sidebar.callToAction

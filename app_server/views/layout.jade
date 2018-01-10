@@ -1,0 +1,33 @@
+doctype html
+html
+    head
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        title= title
+        link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        .navbar.navbar-default.navbar-fixed-top
+            .container
+                .navbar-header
+                    a.navbar-brand(href='/') HardcoreParkore
+                    button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                #navbar-main.navbar-collapse.collapse
+                    ul.nav.navbar-nav
+                        li
+                            a(href='/about/') About
+                        li
+                            a(href='/parkour/') Parkour
+        .container
+            block content
+        footer
+            .row
+                .col-xs-12
+                    small &copy; 2017 &nbsp;
+                        a(href="http://www.julius3d.com" target="__new")
+                            b julius3d.com studios
+    <!-- JavaScript -->
+    script(src='/bower_components/jquery/dist/jquery.min.js')
+    script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
