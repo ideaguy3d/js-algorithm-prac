@@ -3,6 +3,7 @@
  */
 
 let pl = " ->    ";
+
 function dash() {
     // helper to make results in terminal window more readable
     console.log();
@@ -12,7 +13,7 @@ function dash() {
 }
 
 function BinarySearchTreeClass() {
-    const Node = function (key) {
+    const NodeStruct = function (key) {
         this.left = null;
         this.right = null;
         this.key = key;
@@ -21,7 +22,7 @@ function BinarySearchTreeClass() {
     let root = null;
 
     this.insert = function (key) {
-        const newNode = new Node(key); // {1}
+        const newNode = new NodeStruct(key); // {1}
 
         if (root === null) { // {2}
             root = newNode;
@@ -54,15 +55,12 @@ function BinarySearchTreeClass() {
 
     };
 
-    /**  -- The Original insertNode() --**/
-    const insertNode = function (node, newNode) {
+    /**  -- The Original insertNode() -- **/
+    const insertNodeOrig = function (node, newNode) {
         if (newNode.key < node.key) { // {4}
             if (node.left === null) { // {5}
                 node.left = newNode; // {6}
             } else {
-                console.log("\n-- insert left node.left, newNode:");
-                console.log(node.left);
-                console.log(newNode);
                 insertNode(node.left, newNode); // {7} ??
             }
         } else {
@@ -71,9 +69,24 @@ function BinarySearchTreeClass() {
             } else {
                 insertNode(node.right, newNode); // {10} ??
             }
-
         }
     };
+
+    const insertNode = function (node, newNode) {
+        if (newNode.key < node.key) {
+            if (node.left === null) {
+                node.left = newNode;
+            } else {
+                insertNode(node.left, newNode);
+            }
+        } else {
+            if (node.right === null) {
+                node.right = newNode;
+            } else {
+                insertNode(node.right, newNode);
+            }
+        }
+    }
 }
 
 dash();
@@ -88,7 +101,7 @@ function bstTest1() {
     const dataSet1 = [11, 7, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 25, 6];
     for (let i = 0; i < dataSet1.length; i++) {
         let cv = dataSet1[i];
-        console.log("cv = "+cv);
+        console.log("cv = " + cv);
         tree.insert(cv);
     }
 }
