@@ -56,7 +56,7 @@ function BinarySearchTreeClass() {
     };
 
     /**  -- The Original insertNode() -- **/
-    const insertNodeOrig = function (node, newNode) {
+    const insertNode = function (node, newNode) {
         if (newNode.key < node.key) { // {4}
             if (node.left === null) { // {5}
                 node.left = newNode; // {6}
@@ -71,20 +71,29 @@ function BinarySearchTreeClass() {
             }
         }
     };
+}
 
-    const insertNode = function (node, newNode) {
-        if (newNode.key < node.key) {
-            if (node.left === null) {
-                node.left = newNode;
-            } else {
-                insertNode(node.left, newNode);
-            }
+function SecondBinaryTreeClass () {
+    let NodeStruct = function(key){
+        this.key = key;
+        this.left = null;
+        this.right = null;
+    };
+    
+    let root = null;
+
+    this.insert = function(key){
+        let newNode = new NodeStruct(key);
+        if(root === null) {
+            root = newNode;
         } else {
-            if (node.right === null) {
-                node.right = newNode;
-            } else {
-                insertNode(node.right, newNode);
-            }
+            insertionCheck(root, newNode);
+        }
+    };
+
+    let insertionCheck = function(node, newNode){
+        if(newNode.key < node.key) {
+
         }
     }
 }
