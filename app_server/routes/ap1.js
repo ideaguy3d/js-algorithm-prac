@@ -22,18 +22,31 @@ function BinarySearchTree() {
     };
 
     var insertNode = function (node, newNode) {
-        if(newNode.key < node.key) {
-            if(node.left === null) {
+        if (newNode.key < node.key) {
+            if (node.left === null) {
                 node.left = newNode;
             } else {
                 insertNode(node.left, newNode);
             }
         } else {
-            if(node.right === null) {
+            if (node.right === null) {
                 node.right = newNode;
             } else {
                 insertNode(node.right, newNode);
             }
         }
     };
+}
+
+const ds1 = [11, 7, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 25];
+
+let tree1 = binarySearchTreeTest1(ds1);
+
+function binarySearchTreeTest1(dataSet) {
+    let tree = new BinarySearchTree();
+    dataSet.forEach(e => {
+        tree.insert(e);
+    });
+    console.log("binarySearchTreeTest1() complete ^_^");
+    return tree;
 }
