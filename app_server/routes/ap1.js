@@ -25,8 +25,20 @@ function BinarySearchTree() {
         preOrderTraverseNode(root, callback);
     };
 
+    this.postOrderTraverse = function(callback){
+        postOrderTraverseNode(root, callback);
+    };
+
     this.inOrderTraverse = function (callback) {
         inOrderTraverseNode(root, callback); // {3}
+    };
+
+    var postOrderTraverseNode = function(node, callback){
+          if(node !== null) {
+              postOrderTraverseNode(node.left, callback);
+              postOrderTraverseNode(node.right, callback);
+              callback(node.key);
+          }
     };
 
     var preOrderTraverseNode = function(node, callback){
@@ -79,6 +91,10 @@ function binarySearchTreeTest1(dataSet) {
     dataSet.forEach(e => {tree.insert(e);});
 
     tree.inOrderTraverse(printNode);
+    console.log("");
+    tree.preOrderTraverse(printNode);
+    console.log("");
+    tree.postOrderTraverse(printNode);
 
     function printNode(value) {
         console.log("printNode value = "+value);
