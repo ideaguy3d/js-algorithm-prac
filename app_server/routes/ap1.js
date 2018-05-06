@@ -26,7 +26,7 @@ function BinarySearchTree() {
     };
 
     this.max = function () {
-        return maxNode(root); 
+        return maxNode(root);
     };
 
     this.preOrderTraverse = function (callback) {
@@ -41,9 +41,27 @@ function BinarySearchTree() {
         inOrderTraverseNode(root, callback); // {3}
     };
 
+    this.search = function (key) {
+        return searchNode(root, key); // {1}
+    };
+
+    const searchNode = function (node, key) {
+        if (node === null) {
+            return false;
+        }
+
+        if (key < node.key) {
+            return searchNode(node.left, key);
+        } else if (key > node.key) {
+            return searchNode(node.right, key);
+        } else {
+            return true; 
+        }
+    };
+
     const minNode = function (node) {
         if (node) {
-            while (node && node.left !== null) { // {2}
+            while (node && node.left) { // {2}
                 node = node.left; // {3}
             }
             return node.key;
@@ -53,7 +71,7 @@ function BinarySearchTree() {
 
     const maxNode = function (node) {
         if (node) {
-            while(node && node.right !== null) {
+            while (node && node.right) {
                 node = node.right;
             }
             return node.key;
@@ -114,10 +132,10 @@ function BinarySearchTree() {
 
 const ds1 = [11, 7, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 25, 6];
 
-let tree1 = binarySearchTreeTest1(ds1);
+let tree1 = bstTest1(ds1);
 console.log("\ntree1 = ", tree1);
 
-function binarySearchTreeTest1(dataSet) {
+function bstTest1(dataSet) {
     let tree = new BinarySearchTree();
     dataSet.forEach(e => {
         tree.insert(e);
@@ -128,6 +146,11 @@ function binarySearchTreeTest1(dataSet) {
     tree.preOrderTraverse(printNode);
     console.log("");
     tree.postOrderTraverse(printNode);
+    console.log("");
+    console.log("tree min =", tree.min());
+    console.log("");
+    console.log("tree max =", tree.max());
+    console.log("");
 
     function printNode(value) {
         console.log("printNode value = " + value);
