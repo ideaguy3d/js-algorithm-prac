@@ -22,6 +22,13 @@ function BinarySearchTree() {
     };
 
     var insertNode = function (node, newNode) {
+        if(newNode.key === 6) {
+            console.log("node.key: "+node.key);
+            console.log("newNode.key: "+newNode.key);
+            console.log("node = ", node);
+            console.log("-------------------------------------------------------------------");
+        }
+
         if (newNode.key < node.key) {
             if (node.left === null) {
                 node.left = newNode;
@@ -43,12 +50,9 @@ const ds1 = [11, 7, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 25, 6];
 let tree1 = binarySearchTreeTest1(ds1);
 
 function binarySearchTreeTest1(dataSet) {
-
     let tree = new BinarySearchTree();
     dataSet.forEach(e => {
         tree.insert(e);
-        console.log("tree at e: "+e+" =");
-        console.log(tree);
     });
     console.log("binarySearchTreeTest1() complete ^_^");
     return tree;
