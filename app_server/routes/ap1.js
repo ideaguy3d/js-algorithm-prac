@@ -21,10 +21,23 @@ function BinarySearchTree() {
         }
     };
 
+    this.preOrderTraverse = function(callback){
+        preOrderTraverseNode(root, callback);
+    };
+
     this.inOrderTraverse = function (callback) {
         inOrderTraverseNode(root, callback); // {3}
     };
 
+    var preOrderTraverseNode = function(node, callback){
+        if(node !== null) {
+            callback(node.key); // {1}
+            preOrderTraverseNode(node.left, callback); // {2}
+            preOrderTraverseNode(node.right, callback); // {3}
+        }
+    };
+
+    // TODO: re-code this several times to fully grasp
     var inOrderTraverseNode = function (node, callback) {
         if (node !== null) { // {2}
             inOrderTraverseNode(node.left, callback);  // {3}
@@ -34,7 +47,7 @@ function BinarySearchTree() {
     };
 
     var insertNode = function (node, newNode) {
-        if (newNode.key === 6) {
+        if (newNode.key === -1) { // changed to -1 to Not invoke the logs
             console.log("node.key: " + node.key);
             console.log("newNode.key: " + newNode.key);
             console.log("node = ", node);
@@ -63,9 +76,7 @@ let tree1 = binarySearchTreeTest1(ds1);
 
 function binarySearchTreeTest1(dataSet) {
     let tree = new BinarySearchTree();
-    dataSet.forEach(e => {
-        tree.insert(e);
-    });
+    dataSet.forEach(e => {tree.insert(e);});
 
     tree.inOrderTraverse(printNode);
 
