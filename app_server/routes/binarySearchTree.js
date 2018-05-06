@@ -47,12 +47,26 @@ function BinarySearchTreeClass() {
 
     };
 
+    this.min = function(){
+        return minNode(root);
+    };
+
     this.max = function () {
 
     };
 
     this.remove = function () {
 
+    };
+
+    const minNode = function(node){
+        if(node) {
+            while(node && node.left !== null) {
+                node = node.left;
+            }
+            return node.key;
+        }
+        return null;
     };
 
     /**  -- The Original insertNode() -- **/

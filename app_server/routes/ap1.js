@@ -21,11 +21,19 @@ function BinarySearchTree() {
         }
     };
 
-    this.preOrderTraverse = function(callback){
+    this.min = function () {
+        return minNode(root); // {1}
+    };
+
+    this.max = function () {
+        return maxNode(root); 
+    };
+
+    this.preOrderTraverse = function (callback) {
         preOrderTraverseNode(root, callback);
     };
 
-    this.postOrderTraverse = function(callback){
+    this.postOrderTraverse = function (callback) {
         postOrderTraverseNode(root, callback);
     };
 
@@ -33,16 +41,38 @@ function BinarySearchTree() {
         inOrderTraverseNode(root, callback); // {3}
     };
 
-    var postOrderTraverseNode = function(node, callback){
-          if(node !== null) {
-              postOrderTraverseNode(node.left, callback);
-              postOrderTraverseNode(node.right, callback);
-              callback(node.key);
-          }
+    const minNode = function (node) {
+        if (node) {
+            while (node && node.left !== null) { // {2}
+                node = node.left; // {3}
+            }
+            return node.key;
+        }
+        return null;
     };
 
-    var preOrderTraverseNode = function(node, callback){
-        if(node !== null) {
+    const maxNode = function (node) {
+        if (node) {
+            while(node && node.right !== null) {
+                node = node.right;
+            }
+            return node.key;
+        }
+        return null;
+    };
+
+    // TODO: comeback & step through each recursive call
+    var postOrderTraverseNode = function (node, callback) {
+        if (node !== null) {
+            postOrderTraverseNode(node.left, callback);
+            postOrderTraverseNode(node.right, callback);
+            callback(node.key);
+        }
+    };
+
+    // TODO: comeback & step through each recursive call
+    var preOrderTraverseNode = function (node, callback) {
+        if (node !== null) {
             callback(node.key); // {1}
             preOrderTraverseNode(node.left, callback); // {2}
             preOrderTraverseNode(node.right, callback); // {3}
@@ -85,10 +115,13 @@ function BinarySearchTree() {
 const ds1 = [11, 7, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 25, 6];
 
 let tree1 = binarySearchTreeTest1(ds1);
+console.log("\ntree1 = ", tree1);
 
 function binarySearchTreeTest1(dataSet) {
     let tree = new BinarySearchTree();
-    dataSet.forEach(e => {tree.insert(e);});
+    dataSet.forEach(e => {
+        tree.insert(e);
+    });
 
     tree.inOrderTraverse(printNode);
     console.log("");
@@ -97,7 +130,7 @@ function binarySearchTreeTest1(dataSet) {
     tree.postOrderTraverse(printNode);
 
     function printNode(value) {
-        console.log("printNode value = "+value);
+        console.log("printNode value = " + value);
     }
 
     console.log("binarySearchTreeTest1() complete ^_^");
