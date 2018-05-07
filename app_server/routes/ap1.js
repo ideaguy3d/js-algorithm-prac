@@ -45,21 +45,65 @@ function BinarySearchTree() {
         return searchNode(root, key); // {1}
     };
 
-    const searchNode = function (node, key) {
-        if (node === null) {
-            return false;
+    this.remove = function (key) {
+        root = removeNode(root, key); // {1}
+    };
+
+    var removeNode = function (node, key) {
+        if (node === null) { // {2}
+            return null;
         }
 
-        if (key < node.key) {
-            return searchNode(node.left, key);
-        } else if (key > node.key) {
-            return searchNode(node.right, key);
-        } else {
-            return true; 
+        if (key < node.key) { // {3}
+            node.left = removeNode(node.left, key); // {4}
+            return node; // {5}
+        } else if (key > node.key) { // {6}
+            node.right = removeNode(node.right, key); // {7}
+            return node; // {8}
+        } else { // key is equal to node.key, the default case
+            // case 1 - a leaf node
+            if (node.left === null && node.right === null) { // {9}
+                node = null; // {10}
+                return node; // {11}
+            }
+
+            // case 2 - a node w/ 1 child
+            if (node.left === null) { // {12}
+                node = node.right; // {13}
+                return node; // {14}
+            } else if (node.right === null) { // {15}
+                node = node.left; // {16}
+                return node; // {17}
+            }
+
+            // case 3 - a node w/ 2 children
+            let aux = minNode(node.right); // {18}
+            node.key = aux.key; // {19}
+            node.right = removeNode(node.right, aux.key); // {20}
+            return node; // {21}
         }
     };
 
-    const minNode = function (node) {
+    var searchNode = function (node, key) {
+        if (node === null) { // {2}
+            return false;
+        }
+
+        if (key < node.key) { // {3}
+            return searchNode(node.left, key); // {4}
+        } else if (key > node.key) { // {5}
+            return searchNode(node.right, key); // {6}
+        } else {
+            // return true;
+            return {
+                key: node.key,
+                left: node.left,
+                right: node.right
+            }
+        }
+    };
+
+    var minNode = function (node) {
         if (node) {
             while (node && node.left) { // {2}
                 node = node.left; // {3}
@@ -69,7 +113,7 @@ function BinarySearchTree() {
         return null;
     };
 
-    const maxNode = function (node) {
+    var maxNode = function (node) {
         if (node) {
             while (node && node.right) {
                 node = node.right;
@@ -150,6 +194,8 @@ function bstTest1(dataSet) {
     console.log("tree min =", tree.min());
     console.log("");
     console.log("tree max =", tree.max());
+    console.log("");
+    console.log("key 8 was found:", !!tree.search(8).key);
     console.log("");
 
     function printNode(value) {
