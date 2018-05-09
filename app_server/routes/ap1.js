@@ -47,9 +47,11 @@ function BinarySearchTree() {
 
     this.remove = function (key) {
         root = removeNode(root, key); // {1}
+        return root.key;
     };
 
     var removeNode = function (node, key) {
+        console.log("node =", node);
         if (node === null) { // {2}
             return null;
         }
@@ -77,7 +79,7 @@ function BinarySearchTree() {
             }
 
             // case 3 - a node w/ 2 children
-            let aux = minNode(node.right); // {18}
+            let aux = findMinNode(node.right); // {18}
             node.key = aux.key; // {19}
             node.right = removeNode(node.right, aux.key); // {20}
             return node; // {21}
@@ -187,15 +189,21 @@ function bstTest1(dataSet) {
 
     tree.inOrderTraverse(printNode);
     console.log("");
-    tree.preOrderTraverse(printNode);
+    // tree.preOrderTraverse(printNode);
+    // console.log("");
+    // tree.postOrderTraverse(printNode);
+    // console.log("");
+    // console.log("tree min =", tree.min());
+    // console.log("");
+    // console.log("tree max =", tree.max());
+    // console.log("");
+    // console.log("key 8 was found:", !!tree.search(8).key);
+    // console.log("");
+
+    let keyToRemove = 11;
+    console.log(`removing node.key[${keyToRemove}], root.key =`, tree.remove(6));
     console.log("");
-    tree.postOrderTraverse(printNode);
-    console.log("");
-    console.log("tree min =", tree.min());
-    console.log("");
-    console.log("tree max =", tree.max());
-    console.log("");
-    console.log("key 8 was found:", !!tree.search(8).key);
+    tree.inOrderTraverse(printNode);
     console.log("");
 
     function printNode(value) {
