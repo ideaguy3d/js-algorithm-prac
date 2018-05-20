@@ -18,6 +18,7 @@ router.get('/rankings', function (req, res, next) {
             series3: 'boofar info'
         }
     };
+
     res.json(rankings);
 });
 

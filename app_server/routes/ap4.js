@@ -9,6 +9,7 @@
  If there is no such character, return '_'.
  **/
 let case1 = "abcdefghijklmnopqrstuvwxyziflskecznslkjfabe";
+
 function firstNonRepeatedChar(s) {
     let zArr = [];
     for (let i = 0; i < s.length; i++) {
@@ -20,7 +21,7 @@ function firstNonRepeatedChar(s) {
     for (let i = 0; i < zArr.length; i++) {
         let cv = zArr[i];
         if (zArr.indexOf(cv, i + 1) === -1) {
-            if(tArr.indexOf(cv) > -1) { // curVal is in tracker array
+            if (tArr.indexOf(cv) > -1) { // curVal is in tracker array
                 break;
             }
             val = cv;
@@ -30,6 +31,7 @@ function firstNonRepeatedChar(s) {
     }
     return val;
 }
+
 console.log(" ---- firstNonRepeatedChar ---- ");
 console.log("\n {{ " + firstNonRepeatedChar(case1) + " }}");
 
@@ -59,27 +61,29 @@ Sample Output
 
 function timeConversion(s) {
     console.log("jha - s = " + s);
-    
+
     var sArr = s.split(":");
-    
-    sArr[sArr.length-1] = sArr[sArr.length-1].slice(0, -2)
-    
-    sArr.forEach(function(e, i, arr){
-            arr[i] = parseInt(e); 
+
+    sArr[sArr.length - 1] = sArr[sArr.length - 1].slice(0, -2);
+
+    sArr.forEach(function (e, i, arr) {
+        arr[i] = parseInt(e);
     });
-    
+
     var h = sArr[0];
-    if(h > 11) {
-       switch (h):
-           case 12:
-                h = 00; 
+    if (h > 11) {
+        switch (h) {
+
+            case 12:
+                h = 0;
                 break;
-           default:
+            default:
                 console.log("something broke in the switch statement.");
+        }
     } else {
-        sArr[0] = sArr[0] + 12; 
+        sArr[0] = sArr[0] + 12;
     }
-    
+
     console.log(sArr);
 }
 

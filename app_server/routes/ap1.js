@@ -201,7 +201,7 @@ function bstTest1(dataSet) {
     // console.log("");
 
     let keyToRemove = 11;
-    console.log(`removing node.key[${keyToRemove}], root.key =`, tree.remove(6));
+    console.log(`removing node.key[${keyToRemove}], root.key =`, tree.remove(keyToRemove));
     console.log("");
     tree.inOrderTraverse(printNode);
     console.log("");
