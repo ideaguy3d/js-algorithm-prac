@@ -178,8 +178,8 @@ function BinarySearchTree() {
 
 const ds1 = [11, 7, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 25, 6];
 
-let tree1 = bstTest1(ds1);
-console.log("\ntree1 = ", tree1);
+// let tree1 = bstTest1(ds1);
+// console.log("\ntree1 = ", tree1);
 
 function bstTest1(dataSet) {
     let tree = new BinarySearchTree();
@@ -212,4 +212,26 @@ function bstTest1(dataSet) {
 
     console.log("binarySearchTreeTest1() complete ^_^");
     return tree;
+}
+
+let result = recursivePrac1();
+function recursivePrac1() {
+    let wall = 0;
+    let total = 0;
+
+    let buildWall = function (height) {
+        if (height > 0) {
+            buildWall(height - 1);
+        }
+        addBrickLayer(height);
+    };
+
+    let addBrickLayer = function(height){
+        ++wall;
+        total += height;
+    };
+
+    buildWall(10);
+
+    return wall;
 }

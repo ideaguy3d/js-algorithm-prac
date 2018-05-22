@@ -54,6 +54,39 @@ function Dictionary() {
     };
 }
 
+// The Queue Class
+function Queue() {
+    let items = [];
+
+    this.enqueue = function(element){
+        items.push(element);
+    };
+
+    this.dequeue = function(){
+        return items.shift();
+    };
+
+    this.front = function(){
+        return items[0];
+    };
+
+    this.isEmpty = function(){
+        return items.length === 0;
+    };
+
+    this.clear = function(){
+        items = [];
+    };
+
+    this.size = function(){
+        return items.length;
+    };
+
+    this.print = function(){
+        console.log(items.toString());
+    };
+}
+
 // The Graph Class
 function Graph() {
     let verticies = [];
@@ -82,7 +115,15 @@ function Graph() {
             s += '\n';
         }
         return s;
-    }
+    };
+
+    let initializeColor = function () {
+        let color = [];
+        for(let i=0; i < verticies.length; i++) {
+            color[verticies[i]] = 'white';
+        }
+        return color;
+    };
 }
 
 graphTest1();
@@ -90,6 +131,7 @@ graphTest1();
 function graphTest1() {
     let graph = new Graph();
     let myVerticies = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+
     for (let i = 0; i < myVerticies.length; i++) {
         let myVerticy = myVerticies[i];
         graph.addVertex(myVerticy);
