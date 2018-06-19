@@ -58,31 +58,31 @@ function Dictionary() {
 function Queue() {
     let items = [];
 
-    this.enqueue = function(element){
+    this.enqueue = function (element) {
         items.push(element);
     };
 
-    this.dequeue = function(){
+    this.dequeue = function () {
         return items.shift();
     };
 
-    this.front = function(){
+    this.front = function () {
         return items[0];
     };
 
-    this.isEmpty = function(){
+    this.isEmpty = function () {
         return items.length === 0;
     };
 
-    this.clear = function(){
+    this.clear = function () {
         items = [];
     };
 
-    this.size = function(){
+    this.size = function () {
         return items.length;
     };
 
-    this.print = function(){
+    this.print = function () {
         console.log(items.toString());
     };
 }
@@ -117,9 +117,19 @@ function Graph() {
         return s;
     };
 
+    this.bfs = function(v, callback){
+        let color = initializeColor();
+        let queue = new Queue();
+        queue.enqueue(v);
+
+        while(!queue.isEmpty()) {
+
+        }
+    };
+
     let initializeColor = function () {
         let color = [];
-        for(let i=0; i < verticies.length; i++) {
+        for (let i = 0; i < verticies.length; i++) {
             color[verticies[i]] = 'white';
         }
         return color;

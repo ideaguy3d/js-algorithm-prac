@@ -9,7 +9,6 @@
  If there is no such character, return '_'.
  **/
 let case1 = "abcdefghijklmnopqrstuvwxyziflskecznslkjfabe";
-
 function firstNonRepeatedChar(s) {
     let zArr = [];
     for (let i = 0; i < s.length; i++) {
@@ -35,9 +34,7 @@ function firstNonRepeatedChar(s) {
 console.log(" ---- firstNonRepeatedChar ---- ");
 console.log("\n {{ " + firstNonRepeatedChar(case1) + " }}");
 
-
 /*
-
 Given a time in -hour AM/PM format, convert it to military (-hour) time.
 
 Note: Midnight is  on a -hour clock, and  on a -hour clock. Noon is  on a -hour clock, and  on a -hour clock.
@@ -56,9 +53,7 @@ Sample Input
 Sample Output
 
 19:05:45
-
 */
-
 function timeConversion(s) {
     console.log("jha - s = " + s);
 
@@ -86,6 +81,3 @@ function timeConversion(s) {
 
     console.log(sArr);
 }
-
-
-
