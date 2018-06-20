@@ -3,7 +3,7 @@
  */
 
 // The Dictionary Class
-function Dictionary() {
+function DictionaryClass() {
     let items = {};
 
     this.set = function (key, value) {
@@ -55,7 +55,7 @@ function Dictionary() {
 }
 
 // The Queue Class
-function Queue() {
+function QueueClass() {
     let items = [];
 
     this.enqueue = function (element) {
@@ -88,9 +88,9 @@ function Queue() {
 }
 
 // The Graph Class
-function Graph() {
+function GraphClass() {
     let verticies = [];
-    let adjList = new Dictionary();
+    let adjList = new DictionaryClass();
 
     this.addVertex = function (v) {
         verticies.push(v);
@@ -117,20 +117,54 @@ function Graph() {
         return s;
     };
 
-    this.bfs = function(v, callback){
+    this.bfs1 = function (v, callback) {
+        let color = initializeColor(); // {2}
+        let queue = new QueueClass(); // {3}
+        queue.enqueue(v); // {4}
+        while (!queue.isEmpty()) { // {5}
+            let u = queue.dequeue(); // {6}
+            let neighbors = adjList.get(u); // {7}
+            color[u] = 'grey'; // {8}
+            for (let i = 0; i < neighbors.length; i++) { // {9}
+                let w = neighbors[i]; // {10}
+                if (color[w] === 'white') { // {11}
+                    color[w] = 'grey'; // {12}
+                    queue.enqueue(w); // {13}
+                }
+            }
+            color[u] = 'black'; // {14}
+            if (callback) { // {15}
+                callback(u);
+            }
+        }
+    };
+
+    this.bfs = function (v, callback) {
         let color = initializeColor();
-        let queue = new Queue();
+        let queue = new QueueClass();
         queue.enqueue(v);
-
-        while(!queue.isEmpty()) {
-
+        while (!queue.isEmpty()) {
+            let u = queue.dequeue();
+            let neighbors = adjList.get(u);
+            color[u] = 'grey';
+            for (let i = 0; i < neighbors.length; i++) {
+                let w = neighbors[i];
+                if (color[w] === 'white') {
+                    color[w] = 'grey';
+                    queue.dequeue();
+                }
+            }
+            color[u] = 'black';
+            if(callback) {
+                callback(u);
+            }
         }
     };
 
     let initializeColor = function () {
         let color = [];
         for (let i = 0; i < verticies.length; i++) {
-            color[verticies[i]] = 'white';
+            color[verticies[i]] = 'white'; //{1}
         }
         return color;
     };
@@ -139,7 +173,7 @@ function Graph() {
 graphTest1();
 
 function graphTest1() {
-    let graph = new Graph();
+    let graph = new GraphClass();
     let myVerticies = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
 
     for (let i = 0; i < myVerticies.length; i++) {
@@ -159,4 +193,11 @@ function graphTest1() {
     graph.addEdge('E', 'I'); // 10
 
     console.log(graph.toString());
+
+    graph.bfs1('G', function (u) {
+        console.log("Heyyy! G was found! Cool. ^_^, the return val =", u);
+    });
 }
+
+
+//
