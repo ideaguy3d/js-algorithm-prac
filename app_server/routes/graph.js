@@ -117,7 +117,7 @@ function GraphClass() {
         return s;
     };
 
-    this.bfs1 = function (v, callback) {
+    this.bfs = function (v, callback) {
         let color = initializeColor(); // {2}
         let queue = new QueueClass(); // {3}
         queue.enqueue(v); // {4}
@@ -139,7 +139,7 @@ function GraphClass() {
         }
     };
 
-    this.bfs = function (v, callback) {
+    this.bfs2 = function (v, callback) {
         let color = initializeColor();
         let queue = new QueueClass();
         queue.enqueue(v);
@@ -155,7 +155,7 @@ function GraphClass() {
                 }
             }
             color[u] = 'black';
-            if(callback) {
+            if (callback) {
                 callback(u);
             }
         }
@@ -194,7 +194,7 @@ function graphTest1() {
 
     console.log(graph.toString());
 
-    graph.bfs1('G', function (u) {
+    graph.bfs('G', function (u) {
         console.log("Heyyy! G was found! Cool. ^_^, the return val =", u);
     });
 }
