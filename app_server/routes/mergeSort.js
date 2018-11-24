@@ -5,7 +5,7 @@
 
 function MergeSortClass() {
     this.mergeSort = function (array) {
-        array = mergeSortRec(array);
+        return mergeSortRec(array);
     };
 
     let mergeSortRec = function (array) {
@@ -42,7 +42,23 @@ function MergeSortClass() {
 
         return result; // {13}
     };
+
+} // END OF: MergeSortClass(){}
+
+ms1();
+
+function ms1 () {
+    let arr1 = [8,7,6,5,4,3,2,1];
+    let mergeClass = new MergeSortClass();
+    arr1 = mergeClass.mergeSort(arr1);
+    console.log("JHA - arr1 merge sorted = ");
+    console.log(arr1);
 }
+
+
+
+
+
 
 
 //

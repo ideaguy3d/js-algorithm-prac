@@ -13,7 +13,7 @@ let routes = require('./app_server/routes/index');
 let users = require('./app_server/routes/users');
 
 /*****************************************************************************************************
- ----------------------------- Data Structure and Algorithm includes -----------------------------
+    -------------------------- Data Structure and Algorithm includes -----------------------------
  *****************************************************************************************************/
 let baseRoute = "./app_server/routes/";
 require(baseRoute + 'ap4');
