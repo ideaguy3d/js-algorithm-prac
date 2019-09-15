@@ -22,7 +22,8 @@ function SetClass() {
     };
 
     this.add = function (val) {
-        // should also make sure this is a raw value e.g. string, number, or boolean
+        // should also make sure this is a raw value
+        // e.g. string, number, or boolean
         if (!this.has(val)) {
             items[val] = val;
             return true;
