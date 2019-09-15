@@ -103,6 +103,7 @@ function jInsertionSort(a) {
         }
         a[i + 1] = key;
     }
+
     return a;
 }
 

@@ -19,7 +19,7 @@ router.get('/rankings', function (req, res, next) {
         }
     };
 
-    res.json(rankings);
+    return res.json(rankings);
 });
 
 module.exports = router;

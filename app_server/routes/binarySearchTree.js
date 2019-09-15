@@ -134,7 +134,7 @@ function SecondBinaryTreeClass () {
 
 dash();
 
-console.log('jha - in the "binarySearchTree.js" file');
+console.log('jha - in the "BinarySearchTree.js" file');
 console.log();
 
 bstTest1();
