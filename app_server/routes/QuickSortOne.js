@@ -9,40 +9,95 @@ function QuickSortOne() {
     let array = [];
     let array2 = [99, 42, 3, 5, 1, 9, 7, 35, 51, 11, 19, 27];
 
-    this.toString= function(){
+    this.toString = function () {
         return array.join();
     };
 
-    this.insert = function(item){
+    this.insert = function (item) {
         array.push(item);
     };
 
-    function partition(array, left, right) {
-        return -1;
-    }
-
-    let quick = function(array, left, right) {
-       let index;
-
-       if(array.length > 1) {
-           index = partition(array, left, right);
-       }
-
-       if(left < index - 1) {
-           quick(array, left, index-1);
-       }
-
-       if(index < right) {
-           quick(array, index, right);
-       }
+    let swapQuickSort = function (array, idx1, idx2) {
+        let aux = array[idx1];
+        array[idx1] = array[idx2];
+        array[idx2] = aux;
     };
 
-    this.quickSort = function () {
-        quick(array,0,array.length-1);
-    }
-} // END OF: QuickSortOne
+    /**
+     * This will compute the index of the array
+     * @param array
+     * @param left int
+     * @param right int
+     * @returns {number}
+     */
+    function partition(array, left, right) {
+        let pivot = array[Math.floor((left + right) / 2)];
+        // initially this is the beginning of the array
+        let leftPointer = left;
+        // initially this is the end of the array (its' length)
+        let rightPointer = right;
 
-function createRandomNonSortedArray(){
+        while (leftPointer <= rightPointer) {
+            while (array[leftPointer] < pivot) {
+                leftPointer++;
+            }
+
+            while (array[rightPointer] > pivot) {
+                rightPointer--;
+            }
+
+            if (leftPointer <= rightPointer) {
+                swapQuickSort(array, leftPointer, rightPointer);
+                leftPointer++;
+                rightPointer--;
+            }
+        }
+
+        return leftPointer;
+
+    } // END OF: partition()
+
+    /**
+     * The MAIN recursive function
+     * @param array
+     * @param left
+     * @param right
+     */
+    let quick = function (array, left, right) {
+        let index;
+
+        if (array.length > 1) {
+            index = partition(array, left, right);
+
+            if (left < index - 1) {
+                quick(array, left, index - 1);
+            }
+
+            if (index < right) {
+                quick(array, index, right);
+            }
+        }
+    };
+
+    /**
+     * This is the main method that calls the recursive function
+     */
+    this.quickSort = function () {
+        quick(array, 0, array.length - 1);
+    }
+} // END OF: QuickSortOne()
+
+function createNonSortedArray(size) {
+    let array = new QuickSortOne();
+
+    for (let i = size; i > 0; i--) {
+        array.insert(i);
+    }
+
+    return array;
+}
+
+function createRandomNonSortedArray() {
     let array = new QuickSortOne();
 
     array.insert(3);
@@ -56,11 +111,11 @@ function createRandomNonSortedArray(){
     return array;
 }
 
-function printArray(array){
+function printArray(array) {
     console.log(array.toString());
 }
 
-function createNonSortedArrayAndPrint(size){
+function createNonSortedArrayAndPrint(size) {
     let array = createNonSortedArray(size);
     printArray(array);
 
@@ -68,12 +123,14 @@ function createNonSortedArrayAndPrint(size){
 }
 
 console.log('********** Quick Sort **********');
-array = createRandomNonSortedArray();
+let $array = createRandomNonSortedArray();
 
-printArray(array);
+printArray($array);
 
-array.quickSort();
+$array.quickSort();
 
-printArray(array);
+printArray($array);
+
+let b = 'point';
 
 //
