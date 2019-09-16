@@ -6,7 +6,7 @@ ms1();
 
 function MergeSortClass() {
     /**
-     * The MAIN recursive function
+     * The MAIN recursive function, 'Rec' is for recursive
      * @param array
      * @param side
      * @returns {{"13"}|*}
@@ -15,6 +15,8 @@ function MergeSortClass() {
         console.log("... parameter side = " + side);
 
         let length = array.length;
+
+        // _BASE CASE
         if (length === 1) {     // {1}
             return array;       // {2}
         }

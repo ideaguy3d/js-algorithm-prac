@@ -5,9 +5,23 @@
 
 console.log('\n\nhello world ^_^/\n\n');
 
+let set1 = [99, 42, 3, 5, 1, 9, 7, 35, 51, 11, 19, 27];
+let set2 = [];
+let c = 0;
+
+let lambda2 = function (set) {
+    if (c === set1.length) {
+        return;
+    }
+    set[c] = 10 + set1[c++];
+    return lambda2(set);
+}
+
+let set3 = lambda2(set2);
+
+console.log(set3.join());
 
 let lamba1 = function (set, elem, limit) {
-    let set1 = [99, 42, 3, 5, 1, 9, 7, 35, 51, 11, 19, 27];
     let sumOne = 0;
     let count = 0;
 
@@ -61,7 +75,7 @@ class QuickSortOne {
  let qs1 = new QuickSortOne();
  qs1.recurOne();
  console.log(`The total is ${qs1.getTotal()}`);
-**/
+ **/
 
 
 

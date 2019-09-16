@@ -31,7 +31,11 @@ function BinarySearchTreeClass() {
         }
     };
 
-    this.search = function () {
+    this.search = function (key) {
+        return searchNode(NodeStruct, key);
+    };
+
+    let searchNode = function (node, key) {
 
     };
 
@@ -47,7 +51,7 @@ function BinarySearchTreeClass() {
 
     };
 
-    this.min = function(){
+    this.min = function () {
         return minNode(root);
     };
 
@@ -60,28 +64,28 @@ function BinarySearchTreeClass() {
         return root.key; // something I personally do just to something happen
     };
 
-    const removeNode = function(node, key){
+    const removeNode = function (node, key) {
         if (node === null) {
             return null;
         }
 
-        if(key < node.key) {
+        if (key < node.key) {
             node.left = removeNode(node.left, key);
             return node;
         } else if (key > node.key) {
             node.right = removeNode(node.right, key);
             return node;
         } else {
-            if(node.left === null && node.right === null) {
+            if (node.left === null && node.right === null) {
                 node = null;
                 return node;
             }
         }
     };
 
-    const minNode = function(node){
-        if(node) {
-            while(node && node.left !== null) {
+    const minNode = function (node) {
+        if (node) {
+            while (node && node.left !== null) {
                 node = node.left;
             }
             return node.key;
@@ -107,26 +111,26 @@ function BinarySearchTreeClass() {
     };
 }
 
-function SecondBinaryTreeClass () {
-    let NodeStruct = function(key){
+function SecondBinaryTreeClass() {
+    let NodeStruct = function (key) {
         this.key = key;
         this.left = null;
         this.right = null;
     };
-    
+
     let root = null;
 
-    this.insert = function(key){
+    this.insert = function (key) {
         let newNode = new NodeStruct(key);
-        if(root === null) {
+        if (root === null) {
             root = newNode;
         } else {
             insertionCheck(root, newNode);
         }
     };
 
-    let insertionCheck = function(node, newNode){
-        if(newNode.key < node.key) {
+    let insertionCheck = function (node, newNode) {
+        if (newNode.key < node.key) {
 
         }
     }
@@ -147,6 +151,7 @@ function bstTest1() {
         console.log("cv = " + cv);
         tree.insert(cv);
     }
+    tree.search(12);
 }
 
 dash();
