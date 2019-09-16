@@ -3,28 +3,36 @@
  */
 
 ms1();
-//msp2()
 
 function MergeSortClass() {
-
-    this.mergeSort = function (array) {
-        return mergeSortRec(array);
-    };
-
+    /**
+     * The MAIN recursive function
+     * @param array
+     * @param side
+     * @returns {{"13"}|*}
+     */
     let mergeSortRec = function (array, side) {
         console.log("... parameter side = " + side);
+
         let length = array.length;
         if (length === 1) {     // {1}
             return array;       // {2}
         }
 
         let mid = Math.floor(length / 2);       // {3}
-        let left = array.slice(0, mid);            // {4}
-        let right = array.slice(mid, length);      // {5}
+        let leftArray = array.slice(0, mid);            // {4}
+        let rightArray = array.slice(mid, length);      // {5}
 
-        return merge(mergeSortRec(left, 'R'), mergeSortRec(right, 'L')); // {6}
+        return merge(mergeSortRec(leftArray, 'L'), mergeSortRec(rightArray, 'R')); // {6}
     };
 
+    /**
+     * The left and right array get merged into the result array
+     *
+     * @param left array
+     * @param right array
+     * @returns {[]}
+     */
     let merge = function (left, right) {
         let result = []; // {7}
         let il = 0;
@@ -49,23 +57,34 @@ function MergeSortClass() {
         return result; // {13}
     };
 
+    /**
+     * The class method that indirectly invokes the recursive function
+     * @param array
+     * @returns {{"13"}|*}
+     */
+    this.mergeSort = function (array) {
+        return mergeSortRec(array, 'init');
+    };
+
 } // END OF: MergeSortClass(){}
 
 function ms1() {
     let arr1 = [8, 7, 6, 5, 4, 3, 2, 1];
-    let mergeClass = new MergeSortClass();
-    arr1 = mergeClass.mergeSort(arr1);
+    let mergeSort = new MergeSortClass();
+
+    arr1 = mergeSort.mergeSort(arr1);
+
     console.log("JHA - arr1 merge sorted = ");
     console.log(arr1);
 }
 
-function MergeSortPracTwo () {
+function MergeSortPracticeTwo() {
 
-    this.mergeSort = function(array){
+    this.mergeSort = function (array) {
         mergeSortRec(array);
     };
 
-    let mergeSortRec = function(array){
+    let mergeSortRec = function (array) {
 
     };
 

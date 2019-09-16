@@ -5,6 +5,8 @@
 
 console.log('\n\nello world ^_^ \n\n');
 
+let someAr = [300, 200, 100];
+
 function QuickSortOne() {
     let array = [];
     let array2 = [99, 42, 3, 5, 1, 9, 7, 35, 51, 11, 19, 27];
@@ -14,6 +16,7 @@ function QuickSortOne() {
     };
 
     this.insert = function (item) {
+        //someAr.push(item); // this works 😒
         array.push(item);
     };
 
@@ -30,7 +33,7 @@ function QuickSortOne() {
      * @param right int
      * @returns {number}
      */
-    function partition(array, left, right) {
+    let partition = function (array, left, right) {
         let pivot = array[Math.floor((left + right) / 2)];
         // initially this is the beginning of the array
         let leftPointer = left;
@@ -55,7 +58,7 @@ function QuickSortOne() {
 
         return leftPointer;
 
-    } // END OF: partition()
+    }; // END OF: partition()
 
     /**
      * The MAIN recursive function
@@ -83,8 +86,11 @@ function QuickSortOne() {
      * This is the main method that calls the recursive function
      */
     this.quickSort = function () {
-        quick(array, 0, array.length - 1);
+        let leftIdx = 0;
+        let rightIdx = array.length - 1;
+        quick(array, leftIdx, rightIdx);
     }
+
 } // END OF: QuickSortOne()
 
 function createNonSortedArray(size) {
