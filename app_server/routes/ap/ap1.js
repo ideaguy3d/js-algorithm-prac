@@ -28,14 +28,15 @@ let lamba1 = function (set, elem, limit) {
 }
 
 class QuickSortOne {
-    //public function
+    //private this.total;
 
-    public r1() {
+    recurOne() {
         let set1 = [99, 42, 3, 5, 1, 9, 7, 35, 51, 11, 19, 27];
         let sumOne = 0;
         let count = 0;
 
         let total = op1(set1, null, null);
+        this.total = total;
         let b = 1;
 
         function op1(set, elem, limit) {
@@ -50,10 +51,21 @@ class QuickSortOne {
             return op1(set1, set[count], set.length);
         }
     }
+
+    getTotal() {
+        return this.total;
+    }
 }
 
-let qs1 = new QuickSortOne();
-qs1.r1();
+/**
+ let qs1 = new QuickSortOne();
+ qs1.recurOne();
+ console.log(`The total is ${qs1.getTotal()}`);
+**/
+
+
+
+
 
 
 let $break = 'point';
